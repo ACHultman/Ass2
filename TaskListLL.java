@@ -27,10 +27,18 @@ public class TaskListLL implements TaskList {
 
 
     public Task removeHead() {
+      System.out.println("ECHO removeHead()");
         Task result;
-        head = null;
-    		count = 0;
-        System.out.println("ECHO removeHead()");
+
+        if(head == null){
+    			return null;
+    		}
+    		count--;
+    		TaskListNode removed = head;
+    		head = head.next;
+    		return removed.task;
+
+
 
     }
 
@@ -38,7 +46,34 @@ public class TaskListLL implements TaskList {
     public Task remove(int number) {
         System.out.println("ECHO remove(task with number " + number
             + ")" );
-        return null;
+            TaskListNode temp = head;
+            temp.next = head;
+
+          	if(head.equals(null)) {
+              System.out.println("null");
+              return null;
+            }
+
+            while(true){
+              int currentNumber = temp.next.task.getNumber();
+              //System.out.println(currentNumber);
+              //System.out.println(temp.next.task);
+              if(currentNumber != number){
+                if(temp.next.equals(null)){
+                  System.out.println("null");
+                  return null;
+                }
+                //System.out.println(temp.next.task);
+            		temp = temp.next;
+                System.out.println("continue");
+                continue;
+            	}
+            	temp.next = temp.next.next;
+            	count--;
+              return temp.next.task;
+            }
+
+
     }
 
 
@@ -46,17 +81,40 @@ public class TaskListLL implements TaskList {
         System.out.println("ECHO insert(Task(" + priority + " " +
             number + "))");
 
-            INode newNode = new INode(x);
+            Task newTask = new Task(priority, number);
+            TaskListNode newNode = new TaskListNode(newTask, head);
+
         		count++;
         		if(head == null){
         			head = newNode;
-        			return;
+        			return true;
         		}
-        		INode temp = head;
-        		while(temp.next != null){
-        			temp = temp.next;
-        		}
-        		temp.next = newNode;
+
+        		TaskListNode temp = head;
+            while(true){
+              boolean compare;
+              if(temp.task.compareTo(newTask) == -1){
+                compare = false;
+              }
+              else {
+                compare = true;
+              }
+
+              if(!(temp.next == null && compare)){
+
+                temp = temp.next;
+
+              }
+              else{
+                newNode = temp;
+                return true;
+              }
+
+
+
+
+            }
+
     }
 
 
@@ -65,12 +123,12 @@ public class TaskListLL implements TaskList {
         TaskListNode temp = head;
     		for(int i = 0; i <= pos; i++){
     			if(i == pos){
-    				return temp.item;
+    				return temp.task;
     			}
     			temp = temp.next;
 
 
     		}
-    		return -1;
+        return null;
     }
 }
