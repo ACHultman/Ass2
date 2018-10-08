@@ -2,23 +2,23 @@ public class SLinkedList<T> implements IList<T>
 {
 	private INode<T> head;
 	private T count;
-	
+
 	//default constructor, initialize instance variables
 	public SLinkedList()
 	{
 		this.head = null;
 		this.count = null;
 	}
-	
+
 	/*
 	 * PURPOSE:
 	 *	Add the element x to the front of the list.
 	 *
 	 * PRECONDITIONS:
 	 *	None.
-	 * 
+	 *
 	 * Examples:
-	 * 
+	 *
 	 * If l is {1,2,3} and l.addFront(9) returns, then l is {9,1,2,3}.
 	 * If l is {} and l.addFront(3) returns, then l is {3}.
 	 */
@@ -36,12 +36,12 @@ public class SLinkedList<T> implements IList<T>
 	 *
 	 * PRECONDITIONS:
 	 *	None.
-	 * 
+	 *
 	 * Examples:
-	 * 
+	 *
 	 * If l is {1,2,3} and l.addBack(9) returns, then l is {1,2,3,9}.
 	 * If l is {} and l.addBack(9) returns, then l is {9}.
-	 */	
+	 */
 	public void addBack (T x)
 	{
 		INode<T> newNode = new INode<T>(x);
@@ -72,14 +72,14 @@ public class SLinkedList<T> implements IList<T>
 	{
 		return count;
 	}
-	
-	/* 
+
+	/*
 	 * PURPOSE:
 	 *	Return the element at position pos in the list.
-	 * 
+	 *
 	 * PRECONDITIONS:
 	 *	pos >= 0 and pos < l.size()
-	 * 
+	 *
 	 * Examples:
 	 *	If l is {67,12,13} then l.get(0) returns 67
 	 *	If l is	{67,12,13} then l.get(2) returns 13
@@ -94,20 +94,20 @@ public class SLinkedList<T> implements IList<T>
 				return (T)temp.item;
 			}
 			temp = temp.next;
-			
-			
+
+
 		}
 		return -1;
 	}
-	
-	/* 
+
+	/*
 	 * PURPOSE:
 	 *	Remove all elements from the list.  After calling this
 	 *	method on a list l, l.size() will return 0
-	 * 
+	 *
 	 * PRECONDITIONS:
 	 *	None.
-	 * 
+	 *
 	 * Examples:
 	 *	If l is {67,12,13} then after l.clear(), l is {}
 	 *	If l is {} then after l.clear(), l is {}
@@ -118,21 +118,21 @@ public class SLinkedList<T> implements IList<T>
 		this.head = null;
 		this.count = null;
 	}
-	
-	/* 
+
+	/*
 	 * PURPOSE:
-	 *	Remove the first item from the list. 
-	 * 
+	 *	Remove the first item from the list.
+	 *
 	 * PRECONDITIONS:
 	 *	The list is not empty.
-	 * 
+	 *
 	 * Examples:
 	 *	If l is {67,12,13,12} then after removeFront(), l is {12,13,12}
 	 *  67 is returned.
 	 */
 	public T removeFront()
 	{
-		
+
 		if(head == null){
 			return null;
 		}
@@ -142,13 +142,13 @@ public class SLinkedList<T> implements IList<T>
 		return removed;
 	}
 
-	/* 
+	/*
 	 * PURPOSE:
-	 *	Remove all instances of value from the list. 
-	 * 
+	 *	Remove all instances of value from the list.
+	 *
 	 * PRECONDITIONS:
 	 *	None.
-	 * 
+	 *
 	 * Examples:
 	 *	If l is {67,12,13,12} then after l.remove(12), l is {67,13}
 	 *	If l is {1,2,3} then after l.remove(2), l is {1,3}
@@ -158,7 +158,7 @@ public class SLinkedList<T> implements IList<T>
 	{
 	INode<T> temp = head;
 	if(head = null) return;
-	
+
 	while(!(T)temp.next.item.equals(value)){
 		temp = temp.next;
 	}
@@ -169,7 +169,7 @@ public class SLinkedList<T> implements IList<T>
 	/*
 	 * PURPOSE:
 	 *	Return a string representation of the list
-	 * 
+	 *
 	 * PRECONDITIONS:
 	 *	None.
 	 *

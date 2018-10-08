@@ -60,11 +60,11 @@ public class TaskListLL implements TaskList {
             }
 
 
-            int currentNumber = temp.next.task.getNumber();
+            int tempentNumber = temp.next.task.getNumber();
 
-              //System.out.println(currentNumber);
+              //System.out.println(tempentNumber);
               //System.out.println(temp.next.task);
-              while(currentNumber != number){
+              while(tempentNumber != number){
                 if(temp.next.equals(null)){
                   System.out.println("null");
                   return null;
@@ -85,8 +85,10 @@ public class TaskListLL implements TaskList {
         System.out.println("ECHO insert(Task(" + priority + " " +
             number + "))");
 
+
             Task newTask = new Task(priority, number);
             TaskListNode newNode = new TaskListNode(newTask, head);
+            TaskListNode temp = head;
 
         		count++;
         		if(head == null){
@@ -94,43 +96,98 @@ public class TaskListLL implements TaskList {
         			return true;
         		}
 
-        		TaskListNode temp = head;
-            while(true){
-              System.out.println(temp.task);
-              boolean higherPriority;
-              if(priority > temp.task.getPriority()){
-                System.out.println("1");
-                higherPriority = false;
+      /*      for (int i = 0; i < this.getLength(); i++) {
+                System.out.println(head.task);
+                System.out.println(temp.task);
+                int tempNumber = temp.task.getNumber();
+                int tempPriority = temp.task.getPriority();
 
-              }
-              else {
-                System.out.println("2");
-                higherPriority = true;
-              }
 
-              if (temp.next == null && !higherPriority) {
-                System.out.println("3");
-                temp.next = newNode;
+                        if (tempNumber == number && tempPriority == priority) {
+
+                            return false;
+                        }
+                        temp = temp.next;
+                    }
+                    if (head == null || newNode.task.getPriority() > head.task.getPriority()) {
+                        newNode.next = head;
+                        head = newNode;
+                    } else {
+                        TaskListNode before = head;
+                        TaskListNode after = head.next;
+                        while (after != null) {
+                            if (newNode.task.getPriority() > after.task.getPriority()) {
+                                break;
+                            }
+                            before = after;
+                            after = after.next;
+                        }
+                        newNode.next = after;
+                        before.next = newNode;
+                        return true;
+                    }
+                    return true;
+                } */
+
+
+
+              //System.out.println(temp.task);
+              //boolean higherPriority;
+
+              if(temp == null){
+                temp = newNode;
                 return true;
               }
 
-              else if(!higherPriority){
-                System.out.println("4");
-                System.out.println(temp.next.task);
-                temp = temp.next;
-                continue;
+              if (temp.task.getNumber() == number || temp.task.getPriority() == priority) {
+
+                  return false;
+              }
+              temp = temp.next;
+
+
+              if (head == null || newNode.task.getPriority() > head.task.getPriority()) {
+                  newNode.next = head;
+                  head = newNode;
+              } else {
+                  TaskListNode before = head;
+                  TaskListNode after = head.next;
+                  while (after != null) {
+                      if (newNode.task.getPriority() > after.task.getPriority()) {
+                          break;
+                      }
+                      before = after;
+                      after = after.next;
+                  }
+
+                  newNode.next = after;
+                  before.next = newNode;
+                  //System.out.println(count);
+                  return true;
+              }
+              return true;
+
+
+            /*  if(priority > temp.task.getPriority()){
+
+                higherPriority = false;
+
+              }
+
+
+              if(priority < temp.task.getPriority()){
+
+                higherPriority = true;
               }
 
               else{
-                System.out.println("5");
+                System.out.println("4");
                 temp.next =newNode;
                 return true;
               }
 
 
-
-
-            }
+              return true;*/
 
     }
 
@@ -138,19 +195,15 @@ public class TaskListLL implements TaskList {
     public Task retrieve(int pos) {
         System.out.println("ECHO retrieve(" + pos + ")");
         TaskListNode temp = head;
-    		for(int i = 0; i <= count; i++){
-          //if(temp == null){
-          //  return null;
-        //  }
-    			if(i == pos){
-            System.out.println(temp.task);
-
-    				return temp.task;
-    			}
-    			temp = temp.next;
 
 
-    		}
-        return null;
-    }
+        if (pos < this.getLength() && pos >= 0) {
+              for (int i = 0; i < pos; i++) {
+                  temp = temp.next;
+              }
+              return temp.task;
+          } else {
+              return null;
+          }
+      }
 }
