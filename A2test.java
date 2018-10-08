@@ -254,8 +254,11 @@ public class A2test
         testList.insert(14, 250);
         displayResults(testList.getLength() == 3);
         t1 = testList.retrieve(0);
+        System.out.println(t1);
         t2 = testList.retrieve(1);
+        System.out.println(t2);
         t3 = testList.retrieve(2);
+        System.out.println(t3);
         displayResults(t1 != null && t2 != null && t3 != null);
         displayResults(t1.getNumber() == 250 && t2.getNumber() == 150
             && t3.getNumber() == 200);
